@@ -1,0 +1,88 @@
+---
+  - name: Creacion usuario para servicio Tomcat
+    user:
+      name: tomcat
+
+  - name: Crear directorio para Java
+    file:
+      path: /usr/java
+      state: directory
+      owner: tomcat
+      group: tomcat
+      mode: 0755
+
+  - name: Extraer Java 8 en carpeta /usr/java
+    unarchive:
+      src: ./files/jre-8u321-linux-x64.tar.gz
+      dest: /usr/java
+  
+  - name: Generar variable de entorno Java 
+    command: echo 'export PATH="$PATH:/usr/java/jre1.8.0_321/bin"' >> ~/.bashrc && source ~/.bashrc
+
+  - name: Descomprimir Tomcat
+    unarchive:
+      src: ./files/tomcat.tar.gz
+      dest: /tmp/
+      owner: tomcat
+      group: tomcat
+      mode: 0755
+
+  - name: Mover Tomcat a /opt/tomcat
+    command: mv /tmp/apache-tomcat-9.0.65 /opt/tomcat
+
+  - name: Dar permisos en directorio a usuario de servicio
+    file:
+      path: /opt/tomcat
+      owner: tomcat
+      group: tomcat
+      mode: "u+rwx,g+rx,o=rx"
+      recurse: yes
+      state: directory
+ 
+  - name: Creacion directorio /opt/config
+    file:
+      path: /opt/config
+      owner: tomcat
+      group: tomcat
+      mode: 755
+      recurse: yes
+
+  - name: Copiar template de app.properties
+    copy: 
+      src: ./templates/app.properties
+      dest: /opt/config
+      owner: tomcat
+      group: tomcat
+      mode: 0755
+
+  - name: Copiar archivo de servicio Tomcat
+    copy: 
+      src: ./templates/tomcat.service
+      dest: /etc/systemd/system/
+      owner: tomcat
+      group: tomcat
+      mode: 0755
+    changed_when: true
+    notify: Iniciar Tomcat
+ 
+  - name: Copiar todo.war 
+    copy: 
+      src: ./files/todo.war
+      dest: /opt/tomcat/webapps/
+      owner: tomcat
+      group: tomcat
+      mode: 0644
+
+  - name: Agregar modulo de Proxy
+    command: a2enmod proxy proxy_http proxy_balancer lbmethod_byrequests
+    
+
+  - name: Set up virtuahHost
+    template:
+      src: ./templates/virtualHost.conf
+      dest: /etc/apache2/conf-enabled/
+  
+  - name: Habilitar Firewall
+    ufw:
+      rule: allow
+      port: '80'

@@ -1,0 +1,30 @@
+---
+  - name: Update Debian family servers to last version
+    when: ansible_os_family == 'Debian'
+    ansible.builtin.apt:
+      name: "*"
+      state: latest
+
+  - name: Instalando paquetes Debian
+    when: ansible_os_family == 'Debian'
+    apt:
+      name: 
+        - apache2
+        - ufw
+      state: present
+
+  - name: Update Rocky family servers to last version
+    when: ansible_os_family == 'Rocky'
+    ansible.builtin.dnf:
+      name: "*"        
+      state: latest
+
+  - name: Instalando paquetes Rocky
+    when: ansible_os_family == 'Rocky'
+    dnf:
+      name: 
+        - epel-release
+        - httpd
+      state: present 
+
+
