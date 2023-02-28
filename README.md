@@ -18,12 +18,12 @@
 
 - Los SubPlaybooks ejecutan sobre determinados hosts y ejecutan dos roles. Todos los roles estan pensados para funcionar sobre Ubuntu y Rocky sin importar el rol de cada uno.
 - Roles:
-    1. Common
+    1. Common:
         Actualiza los paquetes de los servidores clientes a la ultima version
         Instala paquetes genericos requeridos en las distribuciones para la gestion
-    2. MariaDB
+    2. MariaDB:
         Ejecuta la instalacion de los paquetes necesarios para correr el servicio MariaDB y realiza las configuraciones necesarias para el funcionamiento de nuestra aplicacion
         En caso de generar la base vacia en el servidor ejeuta un .sql para la generacion de las tablas
-    3. Tomcat9
+    3. Tomcat9:
         Ejecuta la instalacion de Apache Tomcat y todas sus dependencias. Luego realiza toda la configuracion necesaria para el funcionamiento de la aplicacion Todo
         Instala un Apache para el acceso al tomcat y lo configura como Proxy
