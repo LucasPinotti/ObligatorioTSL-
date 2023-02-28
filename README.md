@@ -55,4 +55,4 @@
 - Luego de la ejecucion del playbook se realizo una validacion del funcionamiento de la aplicacion
 
 <img src="./Capturas/App test.gif"
-  width="40" height="40" />
+  />
