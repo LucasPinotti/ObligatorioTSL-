@@ -1,9 +1,10 @@
 ---
   - hosts: all
-    #collections:
-    #  - devsec.hardening
-    #roles:
-    #    - devsec.hardening.os_hardening
+    become: true
+    collections:
+      - devsec.hardening
+    roles:
+        - os_hardening
 
   - import_playbook: db.yml
   - import_playbook: app.yml
