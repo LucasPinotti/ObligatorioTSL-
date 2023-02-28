@@ -50,7 +50,7 @@
 - Y se lanzo el playbook con el comando **ansible-playbook ./main.yml -i inventories/hosts.yml --ask-vault-pass** donde se coloco al comienzo de la ejecucion la clave del vault
 
 <img src="./Capturas/Playbook Execution comprimidaso.gif"
-  width="40" height="40" />
+  />
 
 - Luego de la ejecucion del playbook se realizo una validacion del funcionamiento de la aplicacion
 
