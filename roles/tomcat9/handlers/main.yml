@@ -9,14 +9,3 @@
     systemd:
       name: apache2
       state: restarted
-
-  - name: Iniciar HTTPD
-    systemd:
-      name: httpd
-      state: started
-      enabled: yes
-
-  - name: Reiniciar HTTPD
-    systemd:
-      name: httpd
-      state: restarted
