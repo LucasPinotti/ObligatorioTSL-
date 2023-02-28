@@ -9,7 +9,6 @@
     when: ansible_os_family == 'Debian'
     apt:
       name: 
-        - apache2
         - ufw
       state: present
 
@@ -24,7 +23,6 @@
     dnf:
       name: 
         - epel-release
-        - httpd
       state: present 
 
 

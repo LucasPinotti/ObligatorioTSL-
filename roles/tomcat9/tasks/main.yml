@@ -73,14 +73,23 @@
       group: tomcat
       mode: 0644
 
+  - name: Instalando Apache
+    apt:
+      name: 
+        - apache2
+      state: present
+
   - name: Agregar modulo de Proxy
     command: a2enmod proxy proxy_http proxy_balancer lbmethod_byrequests
     
+  - name: Deshabilitar sito default
+    command: a2dissite 000-default.conf
 
-  - name: Set up virtuahHost
+  - name: Copiando VirtualHost
     template:
       src: ./templates/virtualHost.conf
       dest: /etc/apache2/conf-enabled/
+    notify: Reiniciar Apache2
   
   - name: Habilitar Firewall
     ufw:
