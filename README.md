@@ -12,6 +12,11 @@
 ## Configuraciones en servidores host
 
 - Se configuraron dos servidores host, uno con sistema operativo Ubuntu y el otro Rocky. En estos se particionaron segun se indico en la letra del obligatorio, quedando de la siguiente manera:
+<img src="./Capturas/lsblk Rocky.png"
+  style="float: left;"/>
+
+<img src="./Capturas/lsblk Ubuntu.png"
+  style="float: right;"/>
 
 - Estos poseen dos placas de red, una configurada en NAT la cual se utiliza para la salida de internet y otra de HostOnly para la comunicacion con el Bastion (La red con el Bastion es 192.168.190.0/24).
 
@@ -38,3 +43,16 @@
 
 ## Ejecucion de PlayBook
 
+- Para la ejecucion en el servidor Bastion se clono el repositorio utilizando el comando **git clone git@github.com:LucasPinotti/ObligatorioTSL-.git** almacenando el repositorio en el path /git
+
+- Luego se realizo cd al path /git/ObligatorioTSL-
+
+- Y se lanzo el playbook con el comando **ansible-playbook ./main.yml -i inventories/hosts.yml --ask-vault-pass** donde se coloco al comienzo de la ejecucion la clave del vault
+
+<img src="./Capturas/"
+  width="40" height="40" />
+
+- Luego de la ejecucion del playbook se realizo una validacion del funcionamiento de la aplicacion
+
+<img src="./Capturas/App test.gif"
+  width="40" height="40" />
