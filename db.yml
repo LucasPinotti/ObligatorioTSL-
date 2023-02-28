@@ -2,5 +2,4 @@
   - hosts: db
     become: true
     roles:
-      - common
       - mariadb
