@@ -4,3 +4,6 @@
     name: firewalld
     state: reloaded
     daemon_reload: true
+
+- name: Crear Tablas
+  mysql_db: name=todo state=import target=/tmp/CreateTables.sql

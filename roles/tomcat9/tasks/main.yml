@@ -49,8 +49,8 @@
 
   - name: Copiar template de app.properties
     template: 
-      src: ./templates/app.properties
-      dest: /opt/config
+      src: ./templates/app.properties.j2
+      dest: /opt/config/app.properties
       owner: tomcat
       group: tomcat
       mode: 0755
@@ -75,8 +75,7 @@
 
   - name: Instalando Apache
     apt:
-      name: 
-        - apache2
+      name: "{{ packages }}"
       state: present
 
   - name: Agregar modulo de Proxy

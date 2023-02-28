@@ -1,9 +1,7 @@
 ---
   - name: Instalar MariaDB y complemento Python
     package:
-      name: 
-        - mariadb-server
-        - python3
+      name: "{{ packages }}"  
       state: latest
     changed_when: true
 
@@ -18,26 +16,24 @@
       name: pymysql
       state: present
   
-  - name: Crear base de datos Todo
+  - name: Copiar script para crear Tablas
+    copy:
+      src: ./files/CreateTables.sql
+      dest: /tmp/
+
+  - name: Crear base de datos
     mysql_db:
        login_unix_socket: /var/lib/mysql/mysql.sock
-       name: "todo"
+       name: "{{ db_name }}"
        state: present
+    notify: Crear Tablas
 
-  - name: Crear usuario para la instancia de BBDD
-    mysql_user:
-      login_unix_socket: /var/run/mysqld/mysqld.sock
-      name: "todo"
-      password: "{{ password_db }}"
-      priv: "todo.*:ALL"
-      state: present
-
-  - name: Crear base de datos y asignar permisos al usuario
-    mysql_user:
-      login_unix_socket: /var/lib/mysql/mysql.sock
-      name: "todo"
-      password: "{{ password_db }}"
-      priv: "todo.*:ALL"
+  - name: Correr alta usuario
+    community.mysql.mysql_user:
+      name: todo
+      password: prueba2022
+      host: 192.168.190.128
+      priv: '*.*:ALL,GRANT'
       state: present
 
   - name: Habilitar puertos

@@ -5,5 +5,5 @@
     #roles:
     #    - devsec.hardening.os_hardening
 
-  - import_playbook: app.yml
   - import_playbook: db.yml
+  - import_playbook: app.yml

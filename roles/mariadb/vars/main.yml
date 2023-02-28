@@ -1,2 +1,8 @@
 ---
-password_db: prueba2022
+db_password: prueba2022
+db_name: todo
+db_user: todo
+
+packages:
+- mariadb-server
+- python3
