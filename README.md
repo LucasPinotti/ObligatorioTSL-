@@ -9,6 +9,14 @@
 5. Se distribuyo la clave publica en los equipos a administrar con el comando **ssh-copy-id**
 6. Se instala coleccion para hardening del sistema operativo **ansible-galaxy collection install devsec.hardening**
 
+## Configuraciones en servidores host
+
+- Se configuraron dos servidores host, uno con sistema operativo Ubuntu y el otro Rocky. En estos se particionaron segun se indico en la letra del obligatorio, quedando de la siguiente manera:
+
+- Estos poseen dos placas de red, una configurada en NAT la cual se utiliza para la salida de internet y otra de HostOnly para la comunicacion con el Bastion (La red con el Bastion es 192.168.190.0/24).
+
+- Se genero en ambos equipos un usuario Ansible sin contraseña el cual tiene permiso para escalar a sudo sin password y es utilizado unicamente por el Bastion al conectarse con Ansible.
+
 ## Estructura de PlayBook
 
 - Se armo el Playbook general llamado main.yml el cual ejecuta el proceso de hardening sobre los servidores y    luego invoca a un par de sub playbooks que se encuentran en la raiz del repositorio (app.yml y db.yml).
@@ -27,3 +35,5 @@
     3. Tomcat9
         Ejecuta la instalacion de Apache Tomcat y todas sus dependencias. Luego realiza toda la configuracion necesaria para el funcionamiento de la aplicacion Todo
         Instala un Apache para el acceso al tomcat y lo configura como Proxy
+
+## Ejecucion de PlayBook

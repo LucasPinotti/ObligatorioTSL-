@@ -6,4 +6,7 @@
     daemon_reload: true
 
 - name: Crear Tablas
-  mysql_db: name=todo state=import target=/tmp/CreateTables.sql
+  mysql_db: 
+    name: "{{ db_name }}"
+    state: import 
+    target: /tmp/CreateTables.sql

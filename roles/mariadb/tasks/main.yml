@@ -30,8 +30,8 @@
 
   - name: Correr alta usuario
     community.mysql.mysql_user:
-      name: todo
-      password: prueba2022
+      name: "{{ db_user }}"
+      password: "{{ db_password }}"
       host: 192.168.190.128
       priv: '*.*:ALL,GRANT'
       state: present
