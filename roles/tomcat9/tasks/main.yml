@@ -48,7 +48,7 @@
       recurse: yes
 
   - name: Copiar template de app.properties
-    copy: 
+    template: 
       src: ./templates/app.properties
       dest: /opt/config
       owner: tomcat
