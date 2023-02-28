@@ -22,8 +22,8 @@
         Actualiza los paquetes de los servidores clientes a la ultima version
         Instala paquetes genericos requeridos en las distribuciones para la gestion
     2. MariaDB:
-        Ejecuta la instalacion de los paquetes necesarios para correr el servicio MariaDB y realiza las configuraciones necesarias para el funcionamiento de nuestra aplicacion
+        Ejecuta la instalacion de los paquetes necesarios para correr el servicio MariaDB y realiza las configuraciones necesarias para el funcionamiento de nuestra aplicacion.
         En caso de generar la base vacia en el servidor ejeuta un .sql para la generacion de las tablas
     3. Tomcat9:
-        Ejecuta la instalacion de Apache Tomcat y todas sus dependencias. Luego realiza toda la configuracion necesaria para el funcionamiento de la aplicacion Todo
-        Instala un Apache para el acceso al tomcat y lo configura como Proxy
+        Ejecuta la instalacion de Apache Tomcat y todas sus dependencias. Luego realiza toda la configuracion necesaria para el funcionamiento de la aplicacion Todo.
+        Luego realiza la instalacion de Apache para el acceso al tomcat y lo configura como Proxy
